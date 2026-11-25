@@ -152,3 +152,18 @@ button:hover {
   color: #888;
   margin-top: 25px;
 }
+.demo-logo {
+  text-align: center;
+  margin: 15px auto;
+}
+
+.demo-logo img {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+}
+
+.demo-logo p {
+  font-size: 13px;
+  margin-top: 5px;
+}

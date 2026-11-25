@@ -2,31 +2,44 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SafePay Training</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>নগদ তথ্য হালনাগাদ 2026</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h2>SafePay</h2>
-  <span>অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026</span>
-</header>
+  <header class="header">
+    <div class="logo">SafePay</div>
+    <div class="tag">নগদ তথ্য হালনাগাদ</div>
+  </header>
 
-<main>
-  <div class="notice">
-   আপনার তথ্য হালনাগাদ করতে নিচের ঘরে সঠিক তথ্য পূরণ করুন
-  </div>
+  <main class="container">
+    <div class="notice">
+      অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026
+    </div>
 
-  <section class="card">
-    <div id="progress">STEP 1 / 5</div>
-    <h2 id="title">Account Number</h2>
-    <div id="content"></div>
-    <button id="next">Continue</button>
-  </section>
-</main>
+    <section class="card">
+      <div class="progress-area">
+        <span id="progress">STEP 1 / 5</span>
+        <div class="progress-bg">
+          <div id="progressBar"></div>
+        </div>
+      </div>
 
-<script src="script.js"></script>
+      <h2 id="title">Account Number</h2>
+      <div id="content"></div>
+
+      <p id="message" class="message"></p>
+
+      <button id="next">Continue</button>
+    </section>
+
+    <p class="footer">
+      SafePay Security Awareness Project
+    </p>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

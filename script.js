@@ -80,26 +80,9 @@ function showStep() {
     currentStep === steps.length - 1
       ? "verify"
       : "Continue";
+
+  next.style.display = "inline-block";
 }
-
-next.addEventListener("click", function () {
-  const step = steps[currentStep];
-
-  if (step.html) {
-    const date = document.getElementById("date");
-    const balance = document.getElementById("balance");
-
-    if (!date.value || balance.value.trim() === "") {
-      message.textContent = "তথ্য লিখুন।";
-      return;
-    }
-  } else {
-    const input = document.getElementById("demoInput");
-
-    if (!input || input.value.trim() === "") {
-      message.textContent = "তথ্য লিখুন।";
-      return;
-    }
 
 back.addEventListener("click", function () {
   if (currentStep > 0) {
@@ -107,6 +90,32 @@ back.addEventListener("click", function () {
     showStep();
   }
 });
+
+next.addEventListener("click", function () {
+  const step = steps[currentStep];
+  
+  if (currentStep === 0 || currentStep === 1) {
+    const date = document.getElementById("date");
+    const balance = document.getElementById("balance");
+
+
+    if (!date.value || !balance.value.trim()) {
+      message.textContent = "তথ্য লিখুন।";
+      return;
+    }
+  } 
+   if (step.html) {
+    const date = document.getElementById("date");
+    const balance = document.getElementById("balance");
+
+    if (!input || input.value.trim() === "") {
+      message.textContent = "তথ্য লিখুন।";
+      return;
+    }
+       }
+    if (currentStep < steps.length - 1) {
+    currentStep++;
+    showStep();
  } else {
     progress.textContent = "TRAINING COMPLETE";
     progressBar.style.width = "100%";

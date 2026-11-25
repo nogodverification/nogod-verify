@@ -107,7 +107,6 @@ next.addEventListener("click", function () {
       message.textContent = "তথ্য লিখুন।";
       return;
     }
-  }
 
 back.addEventListener("click", function () {
   if (currentStep > 0) {
@@ -115,7 +114,6 @@ back.addEventListener("click", function () {
     showStep();
   }
 });
-  } else {
     progress.textContent = "TRAINING COMPLETE";
     progressBar.style.width = "100%";
     title.textContent = "অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026";

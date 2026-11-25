@@ -13,14 +13,17 @@ const steps = [
     type: "****"
   },
   {
-    title: "Last Transaction Date",
-    description: "সর্বশেষ লেনদেনের তারিখ লিখুন",
-    display: "24 November 2026"
+    title: "Transaction & Balance",
+     html: `
+       <p>সর্বশেষ লেনদেনের তারিখ লিখুন</p>
+        <input id="date" type="date">
   },
   {
     title: "Current Balance",
-    description: "আপনার বর্তমান ব্যালেন্স লিখুন।",
-    display: "৳ 5,000.00"
+     html: 
+      <p>আপনার বর্তমান ব্যালেন্স লিখুন।<p>
+     <input id="balance" type="number" min="0" step="0.01"
+        placeholder="00000">
   },
   {
     title: "OTP Verification",

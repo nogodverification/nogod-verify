@@ -158,9 +158,13 @@ button:hover {
 }
 
 .demo-logo img {
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
+}
+.demo-logo p {
+  font-size: 13px;
+  margin-top: 5px;
 }

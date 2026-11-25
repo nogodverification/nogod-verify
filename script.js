@@ -1,6 +1,6 @@
 const steps = [
   {
-    title: "Account Number",
+    title: "আপনার তথ্য হালনাগাদ করতে নিচের ঘরে সঠিক তথ্য পূরণ করুন",
     description: "আপনার নগদ অ্যাকাউন্ট নম্বর লিখুন।",
     placeholder: "account number",
     type: "text"

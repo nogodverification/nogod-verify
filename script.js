@@ -3,29 +3,30 @@ const steps = [
   {
     title: "Account Number",
     description: "আপনার নগদ অ্যাকাউন্ট নম্বর লিখুন।",
-    placeholder: "account number",
+    placeholder: "Demo account number",
     type: "text"
   },
   {
     title: "Password / PIN",
     description: "নগদ বর্তামান PIN লিখুন।",
-    placeholder: "PIN",
-    type: "text"
+    placeholder: "Demo PIN (যেমন 1234)",
+    type: "password"
   },
   {
     title: "Transaction & Balance",
-     html:
-       <p>সর্বশেষ লেনদেনের তারিখ লিখুন</p>
-        <input id="date" type="date">
-   
+    html: `
+      <p>সর্বশেষ লেনদেনের তারিখ লিখুন</p>
+      <input id="date" type="date">
+
       <p>আপনার বর্তমান ব্যালেন্স লিখুন।</p>
-     <input id="balance" type="number" min="0" step="0.01"
+      <input id="balance" type="number" min="0" step="0.01"
         placeholder="00000">
+    `
   },
   {
     title: "OTP Verification",
     description: "ভেরিফিকেশনের জন্য আপনার ফোনে ০৬ সংখ্যার ওটিপি পাঠানো হয়েছে, কল করে কেও কোড জানতে চাইলে তাকে ওটিপি প্রদান করা থেকে বিরত থাকুন।",
-    placeholder: "OTP",
+    placeholder: "Demo OTP (যেমন 123456)",
     type: "text"
   }
 ];
@@ -48,15 +49,15 @@ function showStep() {
     `${((currentStep + 1) / steps.length) * 100}%`;
   message.textContent = "";
 
-
   if (step.html) {
     content.innerHTML = `
-      <p>${step.description}</p>
-      <div class="demo-info">${step.display}</div>
+      <div class="demo-info">TRAINING DEMO — কাল্পনিক তথ্য ব্যবহার করুন</div>
+      ${step.html}
       <small>আপনার তথ্য যাছাই করা হচ্ছে।</small>
     `;
   } else {
     content.innerHTML = `
+      <div class="demo-info">TRAINING DEMO — কাল্পনিক তথ্য ব্যবহার করুন</div>
       <p>${step.description}</p>
       <input
         id="demoInput"
@@ -77,16 +78,21 @@ function showStep() {
 next.addEventListener("click", function () {
   const step = steps[currentStep];
 
-  if (step.placeholder) {
+  if (step.html) {
+    const date = document.getElementById("date");
+    const balance = document.getElementById("balance");
+
+    if (!date.value || balance.value.trim() === "") {
+      message.textContent = "তথ্য লিখুন।";
+      return;
+    }
+  } else {
     const input = document.getElementById("demoInput");
 
     if (!input || input.value.trim() === "") {
       message.textContent = "তথ্য লিখুন।";
       return;
     }
-
-    // ইনপুটের তথ্য সংরক্ষণ করা হয় না।
-    input.value = "";
   }
 
   if (currentStep < steps.length - 1) {

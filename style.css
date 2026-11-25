@@ -11,18 +11,18 @@ body {
 }
 
 .header {
-  background: #c92332;
-  color: white;
-  padding: 19px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 10px 15px;
 }
 
 .logo img {
-  width: 90px;
-  height: auto;
+  width: 45px;
+  height: 45px;
   object-fit: contain;
+  display: block;
 }
 
 .tag {

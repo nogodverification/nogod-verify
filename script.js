@@ -44,10 +44,12 @@ const content = document.getElementById("content");
 const progress = document.getElementById("progress");
 const progressBar = document.getElementById("progressBar");
 const next = document.getElementById("next");
+const back = document.getElementById("back");
 const message = document.getElementById("message");
 
 function showStep() {
   const step = steps[currentStep];
+  back.disabled = currentStep === 0;
 
   title.textContent = step.title;
   progress.textContent = `STEP ${currentStep + 1} / ${steps.length}`;
@@ -107,9 +109,12 @@ next.addEventListener("click", function () {
     }
   }
 
-  if (currentStep < steps.length - 1) {
-    currentStep++;
+back.addEventListener("click", function () {
+  if (currentStep > 0) {
+    currentStep--;
     showStep();
+  }
+});
   } else {
     progress.textContent = "TRAINING COMPLETE";
     progressBar.style.width = "100%";

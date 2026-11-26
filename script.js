@@ -151,9 +151,10 @@ if (currentStep === 2) {
       </p>
     `;
 
+   
     message.textContent = "";
     next.style.display = "none";
-     
-    });
+  }
+});
 
 showStep();

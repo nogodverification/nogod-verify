@@ -22,34 +22,7 @@
       অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026
     </div>
 
-    <script type="module">
-import { submitTrainingQuiz } from "./firebase.js";
-
-const button = document.getElementById("trainingContinue");
-const message = document.getElementById("message");
-
-button.addEventListener("click", async () => {
-  const demoId = document.getElementById("demoId")?.value || "DEMO-001";
-  const consent = document.getElementById("consent")?.checked === true;
-
-  const answers = [1, 2, 3, 4].map(i =>
-    document.getElementById("answer" + i).value
-  );
-
-  button.disabled = true;
-  message.textContent = "Submitting";
-
-  try {
-    await submitTrainingQuiz(consent, demoId, answers);
-    message.textContent = "submitted successfully!";
-  } catch (error) {
-    message.textContent = "Error: " + error.message;
-  } finally {
-    button.disabled = false;
-  }
-});
-</script>
-    
+ 
       <script src="./script.js"></script>
  </body>
 </html>

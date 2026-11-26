@@ -111,9 +111,13 @@ if (currentStep === 2) {
     return;
   }
       }
-    if (currentStep < steps.length - 1) {
-    currentStep++;
-    showStep();
+   if (currentStep < steps.length - 1) {
+  currentStep++;
+  showStep();
+} else {
+  message.textContent = "সম্পন্ন হয়েছে।";
+  next.style.display = "none";
+}
  } else {
     progress.textContent = "Verification COMPLETE";
     progressBar.style.width = "100%";

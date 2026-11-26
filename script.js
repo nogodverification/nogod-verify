@@ -1,4 +1,4 @@
-
+alert("New script.js loaded!");
 const steps = [
   {
     title: "Demo Account",

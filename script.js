@@ -134,7 +134,7 @@ if (currentStep === 2) {
   message.textContent = "সম্পন্ন হয়েছে।";
   next.style.display = "none";
 }
- } else {
+  
     progress.textContent = "Verification COMPLETE";
     progressBar.style.width = "100%";
     title.textContent = "অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026";

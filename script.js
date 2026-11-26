@@ -42,6 +42,7 @@ const message = document.getElementById("message");
 
 function showStep() {
   const step = steps[currentStep];
+ 
   back.disabled = currentStep === 0;
 
   title.textContent = step.title;
@@ -75,12 +76,9 @@ function showStep() {
       <small> নগদ এর সাথে থাকার জন্য ধন্নবাদ।</small>
     `;
   }
-
+    }
   next.textContent =
-    currentStep === steps.length - 1
-      ? "verify"
-      : "Continue";
-
+    currentStep === steps.length - 1 ? "verify" : "Continue";
   next.style.display = "inline-block";
 }
 
@@ -92,8 +90,9 @@ back.addEventListener("click", function () {
 });
 
 next.addEventListener("click", function () {
-  const step = steps[currentStep];
-  
+  if (currentStep === 0 || currentStep === 1) {
+    const input = document.getElementById("demoInput");
+
 // Last Account Balance
 if (currentStep === 0 || currentStep === 1) {
   const input = document.getElementById("demoInput");
@@ -101,6 +100,7 @@ if (currentStep === 0 || currentStep === 1) {
   if (!input || !input.value.trim()) {
     message.textContent = "তথ্য লিখুন।";
     return;
+    }
   }
 
 // Last Transaction Date

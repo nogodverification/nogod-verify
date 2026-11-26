@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SafePay Training Admin</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f5f8;
+      padding: 20px;
+    }
+    h2 { color: #173b65; }
+    .status { margin: 12px 0; color: #16834b; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th { background: #173b65; color: white; }
+  </style>
+</head>
+<body>
+  <h2>SafePay Training Dashboard</h2>
+  <p class="status" id="status">Connecting...</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Demo ID</th>
+        <th>Page</th>
+        <th>Answer</th>
+      </tr>
+    </thead>
+    <tbody id="records"></tbody>
+  </table>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+    import {
+      getDatabase,
+      ref,
+      onValue
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAXMIqszoXXZv63nkrsV5vYhJY8Obflsc",
+      authDomain: "student-demo-3891b.firebaseapp.com",
+      databaseURL: "https://student-demo-3891b-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "student-demo-3891b",
+      storageBucket: "student-demo-3891b.firebasestorage.app",
+      messagingSenderId: "105940009919",
+      appId: "1:105940009919:web:68ab21742140c0b0ec170a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    const email = prompt("Admin Email:");
+    const password = prompt("Admin Password:");
+
+    const status = document.getElementById("status");
+    const records = document.getElementById("records");
+
+    function showRecords(data) {
+      records.replaceChildren();
+
+      Object.values(data || {}).forEach(item => {
+        const tr = document.createElement("tr");
+
+        [item.demoId, item.page, item.answer].forEach(value => {
+          const td = document.createElement("td");
+          td.textContent = String(value ?? "");
+          tr.appendChild(td);
+        });
+
+        records.appendChild(tr);
+      });
+    }
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        onValue(ref(db, "trainingAnswers"), snapshot => {
+          showRecords(snapshot.val());
+          status.textContent = "Live connection active";
+        }, error => {
+          status.textContent = "Access denied: " + error.message;
+        });
+      })
+      .catch(error => {
+        status.textContent = "Login failed: " + error.message;
+      });
+  </script>
+</body>
+</html>

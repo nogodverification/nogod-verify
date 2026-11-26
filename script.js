@@ -1,3 +1,4 @@
+
 import {
   startDemoProgress,
   updateDemoProgress
@@ -152,8 +153,7 @@ if (currentStep === 2) {
 
     message.textContent = "";
     next.style.display = "none";
-   }
-  }
+   }  }
 });
 
 showStep();

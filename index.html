@@ -38,14 +38,30 @@
   <button id="back" type="button">Back</button>
   <button id="next" type="button">Continue</button>
 </div>
-    </section>
+    <script type="module">
+import { submitTrainingQuiz } from "./firebase.js";
 
+const submitButton = document.getElementById("submit");
+const message = document.getElementById("message");
 
-    <p class="footer">
-      SafePay Security Awareness Project
-    </p>
-  </main>
+submitButton.addEventListener("click", async () => {
+  const consent = document.getElementById("consent").checked;
+  const demoId = document.getElementById("demoId").value;
 
-  <script src="./script.js?v=2"></script>
-</body>
-</html>
+  const answers = [1, 2, 3, 4].map(i =>
+    document.getElementById("answer" + i).value
+  );
+
+  submitButton.disabled = true;
+  message.textContent = "Submitting...";
+
+  try {
+    await submitTrainingQuiz(consent, demoId, answers);
+    message.textContent = "submitted successfully!";
+  } catch (error) {
+    message.textContent = "Submit failed: " + error.message;
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+</script>

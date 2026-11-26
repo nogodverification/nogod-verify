@@ -96,13 +96,12 @@ next.addEventListener("click", function () {
   
 // Last Account Balance
 if (currentStep === 0 || currentStep === 1) {
-  const input = document.getElementById("Input");
+  const input = document.getElementById("demoInput");
 
   if (!input || !input.value.trim()) {
     message.textContent = "তথ্য লিখুন।";
     return;
   }
-}
 
 // Last Transaction Date
 if (currentStep === 2) {
@@ -113,9 +112,7 @@ if (currentStep === 2) {
     message.textContent = "তথ্য পূরণ করুন।";
     return;
   }
-}
-    }
-       }
+      }
     if (currentStep < steps.length - 1) {
     currentStep++;
     showStep();

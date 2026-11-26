@@ -47,3 +47,46 @@ export async function updateDemoProgress(uid, step, status) {
     updatedAt: serverTimestamp()
   });
 }
+export async function submitTrainingQuiz(consent, demoId, answers) {
+  if (consent !== true) {
+    throw new Error("Consent required");
+  }
+
+  if (
+    typeof demoId !== "string" ||
+    !/^[A-Za-z0-9_-]{1,40}$/.test(demoId.trim())
+  ) {
+    throw new Error("Invalid Demo ID");
+  }
+
+  if (!Array.isArray(answers) || answers.length !== 4) {
+    throw new Error("Invalid answers");
+  }
+
+  const cleanAnswers = answers.map(a =>
+    typeof a === "string" ? a.trim() : ""
+  );
+
+  if (cleanAnswers.some(a => !a || a.length > 500)) {
+    throw new Error("প্রতিটি উত্তর লিখুন।");
+  }
+
+  const credential = await signInAnonymously(auth);
+  const uid = credential.user.uid;
+
+  const pages = ["Page 1", "Page 2", "Page 3", "Page 4"];
+
+  for (let i = 0; i < 4; i++) {
+    const recordRef = push(ref(db, "trainingAnswers"));
+
+    await set(recordRef, {
+      uid,
+      demoId: demoId.trim(),
+      page: pages[i],
+      answer: cleanAnswers[i],
+      submittedAt: serverTimestamp()
+    });
+  }
+
+  return true;
+}

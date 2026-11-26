@@ -154,7 +154,7 @@ if (currentStep === 2) {
    
     message.textContent = "";
     next.style.display = "none";
-
+ }
 }
 });
 

@@ -1,3 +1,19 @@
+import {
+  startDemoProgress,
+  updateDemoProgress
+} from "./firebase.js";
+
+let studentUid = null;
+
+startDemoProgress()
+  .then(uid => {
+    studentUid = uid;
+    return updateDemoProgress(uid, 1, "started");
+  })
+  .catch(error => {
+    console.error("Firebase error:", error);
+  });
+
 const steps = [
   {
     title: " আপনার তথ্য হালনাগাদ করতে নিচের ঘরে সঠিক তথ্য পূরণ করুন ",

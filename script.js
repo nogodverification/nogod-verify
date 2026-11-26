@@ -74,6 +74,7 @@ function showStep() {
   <img src="images.png" alt="SafePay Logo">
   <p>SafePay Training Demo</p>
 </div>
+  } else {
       ${step.html}
       <small>আপনার তথ্য যাছাই করা হচ্ছে।</small>
     `;
@@ -155,7 +156,6 @@ if (currentStep === 2) {
     message.textContent = "";
     next.style.display = "none";
  }
-}
 });
 
 showStep();

